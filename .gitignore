@@ -1,0 +1,17 @@
+**/node_modules/
+**/target/
+**/dist/
+**/.idea/
+**/.vscode/
+**/*.tsbuildinfo
+**/vite.config.*.timestamp-*
+.delivery/
+release/
+projects/
+**/static/uploader/
+deploy/.env
+**/.env.local
+**/.env.*.local
+*.log
+**/src/main/resources/db/*_backup_*.sql
+**/src/main/resources/db/.database-backup-*.tmp

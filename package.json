@@ -1,0 +1,20 @@
+{
+  "name": "student-project-platform",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "doctor": "node project.mjs doctor",
+    "generate": "node project.mjs generate",
+    "verify:generated": "node project.mjs verify-generated",
+    "test:tools": "node project.mjs test-tools",
+    "verify": "node project.mjs verify",
+    "build": "node project.mjs build",
+    "dev": "node project.mjs dev",
+    "derive": "node project.mjs derive",
+    "release": "node project.mjs release",
+    "sync:regions": "node project.mjs sync-region-data"
+  }
+}

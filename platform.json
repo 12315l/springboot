@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "backend": "base-framework-main",
+  "admin": "admin",
+  "front": "front",
+  "app": "app",
+  "javaVersion": 17,
+  "capabilities": {
+    "account": { "required": true },
+    "loginSecurity": { "required": true, "dependsOn": ["account"], "status": "integrated" },
+    "permission": { "required": true },
+    "dictionary": { "required": true },
+    "upload": { "required": true },
+    "content": { "required": false, "status": "integrated" },
+    "forum": { "required": false, "dependsOn": ["account", "interaction"], "status": "integrated" },
+    "interaction": { "required": false, "dependsOn": ["account"], "status": "integrated" },
+    "address": { "required": false, "dependsOn": ["account"], "status": "integrated" },
+    "ai": { "required": false, "dependsOn": ["account"], "status": "integrated" },
+    "sms": { "required": false, "status": "integrated" },
+    "feedback": { "required": false, "dependsOn": ["account", "notification", "audit"], "status": "integrated" },
+    "audit": { "required": false, "dependsOn": ["account"], "status": "integrated" },
+    "notification": { "required": false, "dependsOn": ["account"], "status": "integrated" },
+    "dashboard": { "required": false, "dependsOn": ["feedback", "forum", "content"], "status": "integrated" },
+    "branding": { "required": false, "dependsOn": ["permission", "upload"], "status": "integrated" },
+    "operationLog": { "required": false, "dependsOn": ["account", "permission"], "status": "integrated" },
+    "announcement": { "required": false, "dependsOn": ["account", "permission", "operationLog"], "status": "integrated" }
+  }
+}
