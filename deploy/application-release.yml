@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+platform:
+  project-root: ${PLATFORM_PROJECT_ROOT:./data}
+  auth:
+    jwt-key: ${JWT_KEY}
+knife4j:
+  production: true
+springdoc:
+  api-docs:
+    enabled: false

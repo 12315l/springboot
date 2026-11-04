@@ -1,0 +1,39 @@
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: student_project
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: student_app
+      MYSQL_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - type: bind
+        source: ${RELEASE_DIR}/sql/bootstrap
+        target: /docker-entrypoint-initdb.d
+        read_only: true
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+  app:
+    build:
+      context: ${RELEASE_DIR:?Set RELEASE_DIR}
+      dockerfile: Dockerfile
+    environment:
+      DB_URL: jdbc:mysql://db:3306/student_project?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+      DB_USERNAME: student_app
+      DB_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD}
+      PLATFORM_PROJECT_ROOT: /data
+      JWT_KEY: ${JWT_KEY:?Set JWT_KEY}
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - upload_data:/data
+volumes:
+  mysql_data:
+  upload_data:
